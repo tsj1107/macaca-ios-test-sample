@@ -16,7 +16,6 @@ describe('macaca mobile sample', function() {
       platformName: 'ios',
       platformVersion: '9.3',
       deviceName: 'iPhone 5s',
-      autoAcceptAlerts: true,
       app: path.join(__dirname, '..', 'app', 'ios-app-bootstrap.zip')
     });
   });
@@ -38,6 +37,89 @@ describe('macaca mobile sample', function() {
       .waitForElementByName('Login')
       .click()
       .sleep(5000);
+  });
+
+  it('#2 should display home', function() {
+    return driver
+      .takeScreenshot();
+  });
+
+  it('#3 should display webview', function() {
+    return driver
+      .elementByName('Webview')
+      .click()
+      .sleep(3000)
+      .takeScreenshot();
+  });
+
+  it('#4 should go into webview', function() {
+    return driver
+      .contexts()
+      .then(arr => {
+        return driver
+          .context(arr[arr.length - 1]);
+      })
+      .elementById('pushView')
+      .tap()
+      .sleep(5000)
+      .contexts()
+      .then(arr => {
+        return driver
+          .context(arr[arr.length - 1]);
+      })
+      .elementById('popView')
+      .tap()
+      .sleep(5000)
+      .takeScreenshot();
+  });
+
+  it('#5 should go into test', function() {
+    return driver
+      .contexts()
+      .then(arr => {
+        return driver
+          .context(arr[0]);
+      })
+      .elementByName('Baidu')
+      .click()
+      .sleep(5000)
+      .takeScreenshot();
+  });
+
+  it('#6 should works with web', function() {
+    return driver
+      .contexts()
+      .then(arr => {
+        return driver
+          .context(arr[arr.length - 1]);
+      })
+      .elementById('index-kw')
+      .sendKeys('TesterHome')
+      .elementById('index-bn')
+      .tap()
+      .sleep(5000)
+      .source()
+      .then(function(html) {
+        html.should.containEql('TesterHome');
+      })
+      .takeScreenshot();
+  });
+
+  it('#7 should logout success', function() {
+    return driver
+      .contexts()
+      .then(arr => {
+        return driver
+          .context(arr[0]);
+      })
+      .elementByName('PERSONAL')
+      .click()
+      .sleep(1000)
+      .takeScreenshot()
+      .elementByName('Logout')
+      .click()
+      .sleep(1000)
+      .takeScreenshot();
   });
 
 });

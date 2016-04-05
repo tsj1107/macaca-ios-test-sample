@@ -29,6 +29,12 @@ describe('macaca mobile sample', function() {
 
   it('#1 should login success', function() {
     return driver
+      .waitForElementByXPath('//UIATextField[1]')
+      .sendKeys('loginName')
+      .waitForElementByXPath('//UIASecureTextField[1]')
+      .sendKeys('123456')
+      .sleep(1000)
+      .sendKeys('\n')
       .waitForElementByName('Login')
       .click()
       .sleep(5000);

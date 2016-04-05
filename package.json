@@ -1,0 +1,8 @@
+{
+  "name": "macaca-ios-test-sample",
+  "version": "0.1.0",
+  "description": "macaca-ios-test-sample",
+  "devDependencies": {
+    "wd": "*"
+  }
+}

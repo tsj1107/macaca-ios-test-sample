@@ -16,6 +16,7 @@ describe('macaca mobile sample', function() {
       platformName: 'ios',
       platformVersion: '9.3',
       deviceName: 'iPhone 5s',
+      autoAcceptAlerts: true,
       app: path.join(__dirname, '..', 'app', 'ios-app-bootstrap.zip')
     });
   });
